@@ -1,11 +1,12 @@
-import { movieApi } from "@/services/api/movie–api";
-import { CastMember, CompleteMovie, Movie } from "@/types/movie";
+
+import { movieApi } from "@/features/services/api/movie-api";
+import {Movie} from "@/features/types/movie"
+// import { CastMember, CompleteMovie, Movie } from "@/types/movie";
 import {
-    TMDBCreditsResponse,
-    TMDBMovieDetail,
+    TMDBMovie,
     TMDBMoviesResponse
 } from "@/features/movies/types/tmdb";
-import { mapTMDBCastMember, mapTMDBMovie } from "./movie.mapper";
+import { mapTMDBMovie } from "./movie.mapper";
 
 export type MovieCategory = "now_playing" | "popular" | "top_rated" | "upcoming";
 
@@ -14,7 +15,7 @@ export const getMoviesByCategory = async (category: MovieCategory): Promise<Movi
     return data.results.map(mapTMDBMovie);
 };
 
-export const getMovieById = async (id: number): Promise<CompleteMovie> => {
-    const { data } = await movieApi.get<TMDBMovieDetail>(`/${id}`, { params: {language: "es-MX"}})
+export const getMovieById = async (id: number): Promise<Movie> => {
+    const { data } = await movieApi.get<TMDBMovie>(`/${id}`, { params: {language: "es-MX"}})
     return mapTMDBMovie(data);
 }

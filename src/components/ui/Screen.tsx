@@ -3,10 +3,10 @@ import { ScrollView, View } from "react-native";
 
 type props = PropsWithChildren<{scroll?: boolean}>;
 
-export function Screen({children, scroll = false }: Props ){
+export function Screen({children, scroll = false }: props ){
     if (scroll){
         return (
-            <ScrollView className="flex-1 bg-zinc-950" contentContainerStyle={{paddingButton: 32}}>
+            <ScrollView className="flex-1 bg-zinc-950" contentContainerStyle={{paddingBottom: 32}}>
                 {children}
             </ScrollView>
         )

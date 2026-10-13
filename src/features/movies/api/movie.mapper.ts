@@ -1,4 +1,4 @@
-import { Movie} from "@/types/movie";
+import { Movie} from "@/features/types/movie";
 import {TMDBMovie} from "@/features/movies/types/tmdb";
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p";
