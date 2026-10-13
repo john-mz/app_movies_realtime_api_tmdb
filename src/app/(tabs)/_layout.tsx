@@ -1,43 +1,68 @@
-import { Tabs } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router/js-tabs";
+import { SymbolView, type SymbolViewProps } from "expo-symbols";
+import type { ColorValue } from "react-native";
+
+import { colors } from "@/constants/colors";
+
+type TabIconProps = {
+  name: SymbolViewProps["name"];
+  color: ColorValue;
+  size: number;
+};
+
+function TabIcon({ name, color, size }: TabIconProps) {
+  return <SymbolView name={name} tintColor={color} size={size} />;
+}
 
 export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#a855f7",
-        tabBarInactiveTintColor: "#71717a",
+        tabBarActiveTintColor: colors.accent,
+        tabBarInactiveTintColor: colors.textSubtle,
         tabBarStyle: {
-          backgroundColor: "#09090b",
-          borderTopColor: "#27272a",
+          backgroundColor: colors.background,
+          borderTopColor: colors.border,
         },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "inicio",
+          title: "Inicio",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
+            <TabIcon
+              name={{ ios: "house.fill", android: "home", web: "home" }}
+              color={color}
+              size={size}
+            />
           ),
         }}
       />
       <Tabs.Screen
         name="search"
         options={{
-          title: "buscar",
+          title: "Buscar",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" color={color} size={size} />
+            <TabIcon
+              name={{ ios: "magnifyingglass", android: "search", web: "search" }}
+              color={color}
+              size={size}
+            />
           ),
         }}
       />
       <Tabs.Screen
         name="favorites"
         options={{
-          title: "favoritos",
+          title: "Favoritos",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="heart" color={color} size={size} />
+            <TabIcon
+              name={{ ios: "heart.fill", android: "favorite", web: "favorite" }}
+              color={color}
+              size={size}
+            />
           ),
         }}
       />

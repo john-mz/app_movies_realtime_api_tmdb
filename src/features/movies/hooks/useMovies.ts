@@ -1,33 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMoviesByCategory } from "../api/movies.api";
 
-const oneDay = 1000 * 60 * 60 * 24;
+import { getMoviesByCategory, type MovieCategory } from "../api/movies.api";
 
-export const useMovies = () => {
-    const nowPlayingQuery = useQuery({
-        queryKey: ["movies", "now-playing"],
-        queryFn: () => getMoviesByCategory("now_playing"),
-        staleTime: oneDay
-    });
+const STALE_TIME = 1000 * 60 * 60;
 
-    const popularQuery = useQuery({
-        queryKey: ["movies", "popular"],
-        queryFn: () => getMoviesByCategory("popular"),
-        staleTime: oneDay
-    });
+function useMovieCategory(category: MovieCategory) {
+  return useQuery({
+    queryKey: ["movies", category],
+    queryFn: () => getMoviesByCategory(category),
+    staleTime: STALE_TIME,
+  });
+}
 
-    const topRatedQuery = useQuery({
-        queryKey: ["movies", "top-rated"],
-        queryFn: () => getMoviesByCategory("top_rated"),
-        staleTime: oneDay
-    });
-
-    const upcomingQuery = useQuery({
-        queryKey: ["movies", "upcoming"],
-        queryFn: () => getMoviesByCategory("upcoming"),
-        staleTime: oneDay
-    });
-
-    return { nowPlayingQuery, popularQuery, topRatedQuery, upcomingQuery};
-
+export function useMovies() {
+  return {
+    nowPlayingQuery: useMovieCategory("now_playing"),
+    popularQuery: useMovieCategory("popular"),
+    topRatedQuery: useMovieCategory("top_rated"),
+    upcomingQuery: useMovieCategory("upcoming"),
+  };
 }
