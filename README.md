@@ -1,56 +1,65 @@
-# Welcome to your Expo app 👋
+# App de películas en tiempo real (TMDB)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicación móvil hecha con **Expo** y **React Native** que consume la API de [The Movie Database (TMDB)](https://www.themoviedb.org/) para mostrar películas en cartelera, populares, mejor valoradas y próximos estrenos, con su detalle y reparto.
 
-## Get started
+## Funcionalidades actuales
 
-1. Install dependencies
+- Pantalla de inicio con carrusel principal y listas horizontales de películas.
+- Detalle de cada película con su información y reparto.
+- Navegación por pestañas: inicio, búsqueda y favoritos.
+
+## Tecnologías
+
+- Expo + Expo Router (navegación basada en archivos)
+- TypeScript
+- TanStack React Query (caché y estados de carga de las peticiones)
+- Axios (cliente HTTP para TMDB)
+- NativeWind 4 (Tailwind CSS en React Native)
+
+## Estructura
+
+```
+src/
+  app/          rutas (pestañas y detalle de película)
+  components/   componentes de UI y de películas
+  services/api  cliente de TMDB
+  types/        tipos de dominio
+```
+
+## Cómo ejecutarla
+
+1. Instala las dependencias:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Copia `.env.example` como `.env` y pon tu token de lectura de TMDB (lo obtienes en https://www.themoviedb.org/settings/api):
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Inicia la app:
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+> El archivo `.env` está en `.gitignore`: nunca subas tu token al repositorio.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Próximos pasos
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Favoritos persistentes en el dispositivo.
+- Búsqueda con filtros por género y año, y paginación infinita.
+- Pantalla de actor con su filmografía.
+- Tráilers y plataformas donde ver cada película.
+- Manejo de errores, estados de carga y modo sin conexión.
+- Pruebas con Jest y React Native Testing Library.
+- Build de Android con EAS.
 
-## Get a fresh project
+## Licencia
 
-When you're ready, run:
+Distribuido bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE).
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-### Other setup steps
-
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Este producto usa la API de TMDB, pero no está avalado ni certificado por TMDB.
